@@ -4,7 +4,7 @@ const loadCategory = async () => {
     return data.data.news_category;
 }
 
-
+// Categories section 
 const setAllMenu = async () => {
     const data = await loadCategory();
     // console.log(data)
@@ -19,6 +19,7 @@ const setAllMenu = async () => {
 }
 setAllMenu();
 
+// News Load section 
 const loadNews = (category_id) => {
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
     fetch(url)
@@ -26,6 +27,7 @@ const loadNews = (category_id) => {
         .then(data => displayNews(data.data))
 }
 
+// news Display section 
 const displayNews = newses => {
     console.log(newses)
     const newsContainer = document.getElementById('news-container');
