@@ -45,14 +45,12 @@
     </header>
     <hr class="w-11/12 mx-auto my-3">
     <main>
-        <section class="w-11/12 mx-auto my-3">
-            <div class="text-center">
-                <ul id="menu-li" class="menu menu-horizontal bg-base-100 rounded-box">
-                    <!-- <li><a>Item 1</a></li>
-                    <li><a>Item 2</a></li>
-                    <li><a>Item 3</a></li> -->
-                </ul>
-            </div>
+        <section class="w-11/12 mx-auto my-3 text-center">
+            <!-- <div class="text-center"> -->
+            <ul id="menu-li" class="menu menu-horizontal flex-wrap bg-base-100 rounded-box ">
+
+            </ul>
+            <!-- </div> -->
         </section>
 
         <!-- found length section  -->
@@ -61,11 +59,31 @@
 
             </div>
         </section>
-        <!-- spinner  -->
-        <progress id="spinner" class="progress w-11/12 mx-auto  hidden"></progress>
 
         <!-- Sort by View section  -->
+        <section class="w-11/12 mx-auto my-3">
+            <div class="flex justify-between flex-wrap">
+                <div class="flex justify-start items-center font-semibold">
+                    <div>
+                        <p class="text-md">Sort by:</p>
+                    </div>
+                    <button class="btn btn-ghost btn-sm font-medium normal-case
+                        "><a href="index.html">views</a></button>
+
+                </div>
+                <div>
+                    <div class="flex">
+                        <button class="btn btn-active btn-sm hover:bg-white hover:text-black mx-2 text-sm">Today's
+                            Pick</button>
+                        <button class="btn btn-outline btn-sm text-sm">Trending</button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- spinner  -->
         <section>
+            <progress id="spinner" class="progress w-11/12 mx-auto  hidden"></progress>
 
         </section>
         <!-- News Container  -->
@@ -82,9 +100,7 @@
                 <div class="modal-box">
                     <h3 id="modal-title" class="font-bold text-lg"></h3>
                     <div id="modal-body">
-                        <!-- <p class="py-4">You've been selected for a chance to get one year of subscription to use
-                            Wikipedia
-                            for free!</p> -->
+
                     </div>
                     <div class="modal-action">
                         <label for="my-modal-6" class="btn">Close</label>
