@@ -13,11 +13,12 @@ const setAllMenu = async () => {
     for (const menu of data) {
         const li = document.createElement('li')
         li.innerHTML = `
-        <button type="button" class='text-lg font-semibold uppercase text-stone-500 hover:text-black' onclick="loadNews('${menu.category_id}')">${menu.category_name}</button>`
+        <a class='text-lg font-semibold uppercase text-stone-500 hover:text-black' onclick="loadNews('${menu.category_id}')">${menu.category_name}</a>`
         allMenu.appendChild(li)
     }
 }
 setAllMenu();
+
 
 // News Load section 
 const loadNews = (category_id) => {
@@ -29,14 +30,15 @@ const loadNews = (category_id) => {
 
 // news Display section 
 const displayNews = newses => {
-    console.log(newses)
+
     const newsContainer = document.getElementById('news-container');
     newsContainer.textContent = '';
     for (const news of newses) {
+        // console.log(news)
         const newsDiv = document.createElement('div')
         newsDiv.classList.add("card", "w-full", "bg-base-100", "shadow-xl")
         newsDiv.innerHTML = `
-        <figure><img src="${news.thumbnail_url}" alt="Shoes" /></figure>
+        <figure><img src="${news.thumbnail_url}" class="w-100" alt="Shoes" /></figure>
                     <div class="card-body">
                         <h2 class="card-title">${news.title}</h2>
                         <p>${news.details.length > 130 ? news.details.slice(0, 130) + '...' : news.details}</p>
@@ -57,7 +59,8 @@ const displayNews = newses => {
                        <div>${news.total_view ? news.total_view + 'M' : 'No data available'}</div>
                        </div>
                        <div class="card-actions justify-end">
-                       <button class="btn btn-primary">Details</button>
+                       <label for="my-modal-6" class="btn btn-primary modal-button" onclick="loadModals('${news._id}')">Details</label>
+
                    </div>
                        </div>
                      </div>
@@ -66,7 +69,28 @@ const displayNews = newses => {
     }
 }
 
-loadNews()
+const loadModals = _id => {
+    const url = `https://openapi.programming-hero.com/api/news/${_id}`
+    fetch(url)
+        .then(res => res.json())
+        .then(data => showModals(data.data[0]))
+}
+
+const showModals = modals => {
+    console.log(modals)
+    const modalTitle = document.getElementById('modal-title')
+    modalTitle.innerText = `${modals.title}`
+    const modalBody = document.getElementById('modal-body')
+    modalBody.textContent = '';
+    modalBody.innerHTML = `
+    <img src='${modals.image_url}'/>
+    <p>${modals.details}</p>
+    `
+}
 
 
 
+
+
+
+loadNews('08')
