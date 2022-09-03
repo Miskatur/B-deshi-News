@@ -1,7 +1,13 @@
 const loadCategory = async () => {
-    const res = await fetch(`https://openapi.programming-hero.com/api/news/categories`)
-    const data = await res.json()
-    return data.data.news_category;
+    const url = `https://openapi.programming-hero.com/api/news/categories`
+    try {
+        const res = await fetch(url)
+        const data = await res.json()
+        return data.data.news_category;
+    }
+    catch (error) {
+        console.log(error)
+    }
 }
 
 // Categories section 
@@ -26,6 +32,7 @@ const loadNews = (category_id) => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayNews(data.data))
+        .catch(error => console.log(error))
 }
 
 // news Display section 
@@ -74,6 +81,7 @@ const loadModals = _id => {
     fetch(url)
         .then(res => res.json())
         .then(data => showModals(data.data[0]))
+        .catch(error => console.log(error))
 }
 
 const showModals = modals => {
@@ -87,9 +95,6 @@ const showModals = modals => {
     <p>${modals.details}</p>
     `
 }
-
-
-
 
 
 
