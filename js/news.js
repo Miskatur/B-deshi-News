@@ -15,12 +15,15 @@ const setAllMenu = async () => {
     const data = await loadCategory();
     // console.log(data)
     const allMenu = document.getElementById('menu-li');
+    // const foundMenu = document.getElementById('news-found')
 
     for (const menu of data) {
+        const foundMenu = document.getElementById('news-found')
         const li = document.createElement('li')
         li.innerHTML = `
         <a class='text-lg font-semibold uppercase text-stone-500 hover:text-black' onclick="loadNews('${menu.category_id}')">${menu.category_name}</a>`
         allMenu.appendChild(li)
+        // foundMenu.innerText = `${}`
     }
 }
 setAllMenu();
@@ -37,6 +40,8 @@ const loadNews = (category_id) => {
 
 // news Display section 
 const displayNews = newses => {
+    const foundMenu = document.getElementById('news-found')
+    foundMenu.innerHTML = `<h2 class="text-xl w-11/12 mx-auto border-0 bg-base-100	  divide-slate-300 fw-semibold rounded-md p-3">${newses.length} items found for category Entertainment</h2>`
 
     const newsContainer = document.getElementById('news-container');
     newsContainer.textContent = '';
