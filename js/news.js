@@ -1,4 +1,8 @@
+const spinner = document.getElementById('spinner')
+
 const loadCategory = async () => {
+    spinner.classList.remove('hidden')
+
     const url = `https://openapi.programming-hero.com/api/news/categories`
     try {
         const res = await fetch(url)
@@ -13,7 +17,6 @@ const loadCategory = async () => {
 // Categories section 
 const setAllMenu = async () => {
     const data = await loadCategory();
-    spinner.classList.add('hidden')
     // console.log(data)
     const allMenu = document.getElementById('menu-li');
     for (const menu of data) {
@@ -22,10 +25,7 @@ const setAllMenu = async () => {
         <a class='text-md font-semibold uppercase text-stone-500 hover:text-black' onclick="loadNews('${menu.category_id}')">${menu.category_name}</a>`
         allMenu.appendChild(li)
 
-        // Spinner 
-        const spinner = document.getElementById('spinner')
-        spinner.classList.remove('hidden')
-        // spinner close 
+
     }
 }
 setAllMenu();
@@ -33,13 +33,12 @@ setAllMenu();
 
 // News Load section 
 const loadNews = (category_id) => {
+    spinner.classList.remove('hidden')
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
     fetch(url)
         .then(res => res.json())
         .then(data => displayNews(data.data))
         .catch(error => console.log(error))
-    // Spinner 
-    spinner.classList.remove('hidden')
 
 }
 
@@ -52,9 +51,7 @@ const displayNews = newses => {
 
     const newsContainer = document.getElementById('news-container');
 
-    // Spinner 
-    spinner.classList.add('hidden')
-    // spinner close 
+
     newsContainer.textContent = '';
 
     newses.sort((a, b) => {
@@ -95,12 +92,12 @@ const displayNews = newses => {
             `
         newsContainer.appendChild(newsDiv)
 
+        spinner.classList.add('hidden')
 
 
     });
-    // console.log(news)
 
-    // }
+
 }
 
 // Load Modals sectin 
