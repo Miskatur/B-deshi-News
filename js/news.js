@@ -17,6 +17,7 @@ const loadCategory = async () => {
 // Categories section 
 const setAllMenu = async () => {
     const data = await loadCategory();
+
     // console.log(data)
     const allMenu = document.getElementById('menu-li');
     for (const menu of data) {
@@ -24,8 +25,6 @@ const setAllMenu = async () => {
         li.innerHTML = `
         <a class='text-md font-semibold uppercase text-stone-500 hover:text-black' onclick="loadNews('${menu.category_id}')">${menu.category_name}</a>`
         allMenu.appendChild(li)
-
-
     }
 }
 setAllMenu();
@@ -39,6 +38,7 @@ const loadNews = (category_id) => {
         .then(res => res.json())
         .then(data => displayNews(data.data))
         .catch(error => console.log(error))
+
 
 }
 
